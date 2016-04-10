@@ -10,7 +10,6 @@
 #import "LJBKeyBoard.h"
 
 @interface TwoViewController ()<LJBKeyBoardDelegate,UITextFieldDelegate>
-@property(nonatomic,strong)LJBKeyBoard *keyboard;
 @property(nonatomic,weak)UIScrollView *scrollView;
 @property(assign)NSInteger selTag;
 @end
@@ -43,8 +42,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(endEdit)];
     
     //键盘代理设置(设置代理全局，必须实现)
-    self.keyboard = [[LJBKeyBoard alloc] init];
-    self.keyboard.delegate = self;
+    [LJBKeyBoard keyBoardWithSuperView:self.view scrollView:self.scrollView delegate:self];
 }
 
 - (void)endEdit {
@@ -65,15 +63,7 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - 键盘代理事件(必须实现以下三个代理)
-- (UIView *)ljbKeyBoardSuperView {
-    return self.view;
-}
-
-- (UIScrollView *)ljbKeyBoardScrollView {
-    return self.scrollView;
-}
-
+#pragma mark - 键盘代理事件(必须实现以下代理)
 - (CGFloat)ljbKeyBoardGetMaxY {
     UITextField *textField = (UITextField *)[self.view viewWithTag:self.selTag];
     
