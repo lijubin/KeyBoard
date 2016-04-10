@@ -8,6 +8,13 @@
 
 #import "LJBKeyBoard.h"
 
+@interface LJBKeyBoard ()
+
+@property(nonatomic,weak)UIView *superView;
+@property(nonatomic,weak)UIScrollView *scrollView;
+
+@end
+
 @implementation LJBKeyBoard
 
 - (instancetype)init {
@@ -15,6 +22,16 @@
         [self keyBoard];
     }
     return self;
+}
+
++ (instancetype)keyBoardWithSuperView:(UIView *)superView scrollView:(UIScrollView *)scrollView delegate:(id)delegate {
+    LJBKeyBoard *keyBoard = [[self alloc] init];
+    keyBoard.delegate = delegate;
+    [superView addSubview:keyBoard];
+    keyBoard.superView = superView;
+    keyBoard.scrollView = scrollView;
+    
+    return keyBoard;
 }
 
 - (void)keyBoard {
@@ -29,13 +46,13 @@
     NSDictionary *dict = note.userInfo;
     CGRect endRect = [dict[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     CGFloat endKeyY = 0;
-    UIView *view = [self.delegate ljbKeyBoardSuperView];
+    UIView *view = self.superView;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
         endKeyY = view.frame.size.height - endRect.size.width;
     } else {
         endKeyY = endRect.origin.y;
     }
-    UIScrollView *scrollView = [self.delegate ljbKeyBoardScrollView];
+    UIScrollView *scrollView = self.scrollView;
     CGPoint offSet = scrollView.contentOffset;
     CGFloat currTextMaxY = [self.delegate ljbKeyBoardGetMaxY];
     CGFloat Fheight = (scrollView.frame.origin.y + currTextMaxY-offSet.y);
@@ -46,8 +63,7 @@
 
 #pragma mark - 获取键盘隐藏通知
 - (void)keyBoardHide:(NSNotification *)note {
-    UIView *view = [self.delegate ljbKeyBoardSuperView];
-    view.transform = CGAffineTransformIdentity;
+    self.superView.transform = CGAffineTransformIdentity;
 }
 
 @end
