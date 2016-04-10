@@ -11,7 +11,6 @@
 
 @interface OneViewController ()<LJBKeyBoardDelegate,UITextFieldDelegate>
 
-@property(nonatomic,strong)LJBKeyBoard *keyboard;
 @property(assign)NSInteger selTag;
 
 @end
@@ -34,26 +33,16 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(endEdit)];
     
     //键盘代理设置(设置代理全局，必须实现)
-    self.keyboard = [[LJBKeyBoard alloc] init];
-    self.keyboard.delegate = self;
+   [LJBKeyBoard keyBoardWithSuperView:self.view scrollView:nil delegate:self];
 }
 
 - (void)endEdit {
     [self.view endEditing:YES];
 }
 
-#pragma mark - 键盘代理事件(必须实现以下三个代理)
-- (UIView *)ljbKeyBoardSuperView {
-    return self.view;
-}
-
-- (UIScrollView *)ljbKeyBoardScrollView {
-    return nil;
-}
-
+#pragma mark - 键盘代理事件(必须实现以下代理)
 - (CGFloat)ljbKeyBoardGetMaxY {
     UITextField *textField = (UITextField *)[self.view viewWithTag:self.selTag];
-    
     return CGRectGetMaxY(textField.frame);
 }
 
