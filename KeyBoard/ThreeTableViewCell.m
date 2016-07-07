@@ -14,7 +14,6 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = [UIColor grayColor];
         UITextField *textField = [[UITextField alloc] init];
-        textField.delegate = viewController;
         self.textField = textField;
         textField.borderStyle = UITextBorderStyleRoundedRect;
         [self.contentView addSubview:textField];
