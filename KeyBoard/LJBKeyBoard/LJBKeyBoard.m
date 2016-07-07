@@ -12,7 +12,8 @@
 
 @property(nonatomic,weak)UIView *superView;
 @property(nonatomic,weak)UIScrollView *scrollView;
-
+@property(assign)CGFloat tmpSuperY;
+@property(assign)CGFloat currTextMaxY;
 @end
 
 @implementation LJBKeyBoard
@@ -46,19 +47,49 @@
     NSDictionary *dict = note.userInfo;
     CGRect endRect = [dict[@"UIKeyboardFrameEndUserInfoKey"] CGRectValue];
     CGFloat endKeyY = 0;
-    UIView *view = self.superView;
+    self.currTextMaxY = 0;
+    self.tmpSuperY = 0;
+    [self getResponderView:self.superView];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
-        endKeyY = view.frame.size.height - endRect.size.width;
+        endKeyY = self.superView.frame.size.height - endRect.size.width;
     } else {
         endKeyY = endRect.origin.y;
     }
     UIScrollView *scrollView = self.scrollView;
     CGPoint offSet = scrollView.contentOffset;
-    CGFloat currTextMaxY = [self.delegate ljbKeyBoardGetMaxY];
-    CGFloat Fheight = (scrollView.frame.origin.y + currTextMaxY-offSet.y);
-    if (Fheight > endKeyY) {
-        view.transform = CGAffineTransformMakeTranslation(0, endKeyY - Fheight);
+    if ([self.delegate respondsToSelector:@selector(ljbKeyBoardGetSmallY)]) {
+        self.currTextMaxY += [self.delegate ljbKeyBoardGetSmallY];
     }
+    CGFloat Fheight = (self.currTextMaxY-offSet.y);
+    if (Fheight > endKeyY) {
+        self.superView.transform = CGAffineTransformMakeTranslation(0, endKeyY - Fheight);
+    }
+}
+
+#pragma mark - 计算响应者链条
+- (BOOL)getResponderView:(UIView *)view {
+    BOOL isFind = NO;
+    if (view.subviews.count > 0) {
+        self.tmpSuperY += view.frame.origin.y;
+        for (UIView *subView in view.subviews) {
+            if ([subView isFirstResponder]) {
+                self.currTextMaxY = self.tmpSuperY + CGRectGetMaxY(subView.frame);
+                isFind = YES;
+                break;
+            } else {
+                isFind = NO;
+                if (subView.subviews.count > 0) {
+                    isFind = [self getResponderView:subView];
+                }
+            }
+        }
+        if (!isFind) {
+            self.tmpSuperY -= view.frame.origin.y;
+        }
+    } else {
+        self.tmpSuperY = 0;
+    }
+    return isFind;
 }
 
 #pragma mark - 获取键盘隐藏通知

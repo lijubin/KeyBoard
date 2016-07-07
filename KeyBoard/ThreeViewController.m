@@ -10,8 +10,7 @@
 #import "LJBKeyBoard.h"
 #import "ThreeTableViewCell.h"
 
-@interface ThreeViewController ()<LJBKeyBoardDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
-@property(assign)NSInteger selTag;
+@interface ThreeViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,weak)UITableView *tableView;
 @end
 
@@ -41,12 +40,6 @@
     [self.view endEditing:YES];
 }
 
-#pragma mark - 键盘代理事件(必须实现以下代理)
-- (CGFloat)ljbKeyBoardGetMaxY {
-    CGFloat cellHeight = [self tableView:self.tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:self.selTag - 1 inSection:0]];
-    return cellHeight * self.selTag;
-}
-
 #pragma mark - tableView 代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -62,15 +55,8 @@
     if (!cell) {
         cell = [[ThreeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID viewController:self];
     }
-    cell.textField.tag = indexPath.row + 1;
     
     return cell;
-}
-
-#pragma textField代理
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    self.selTag = textField.tag;
-    return YES;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

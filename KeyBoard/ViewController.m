@@ -10,6 +10,7 @@
 #import "OneViewController.h"
 #import "TwoViewController.h"
 #import "ThreeViewController.h"
+#import "FourViewController.h"
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -21,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tmpArray = @[@"view上弹",@"scrollView上弹",@"tableView上弹"];
+    self.tmpArray = @[@"view上弹",@"scrollView上弹",@"tableView上弹",@"多层包含"];
     UITableView *tableView = [[UITableView alloc] init];
     tableView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64);
     tableView.delegate = self;
@@ -51,9 +52,13 @@
     } else if (indexPath.row == 1) {
         TwoViewController *two = [[TwoViewController alloc] init];
         [self.navigationController pushViewController:two animated:YES];
-    } else {
+    } else if (indexPath.row == 2) {
         ThreeViewController *three = [[ThreeViewController alloc] init];
         [self.navigationController pushViewController:three animated:YES];
+    } else if (indexPath.row == 3) {
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        FourViewController *fourVC = [storyBoard instantiateViewControllerWithIdentifier:@"four"];
+        [self.navigationController pushViewController:fourVC animated:YES];
     }
 }
 

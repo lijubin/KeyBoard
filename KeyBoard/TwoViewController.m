@@ -9,9 +9,8 @@
 #import "TwoViewController.h"
 #import "LJBKeyBoard.h"
 
-@interface TwoViewController ()<LJBKeyBoardDelegate,UITextFieldDelegate>
+@interface TwoViewController ()<LJBKeyBoardDelegate>
 @property(nonatomic,weak)UIScrollView *scrollView;
-@property(assign)NSInteger selTag;
 @end
 
 @implementation TwoViewController
@@ -31,11 +30,9 @@
     [self.view addSubview:scrollView];
     for (int i = 0; i < 10; i++) {
         UITextField *textField = [[UITextField alloc] init];
-        textField.tag = i + 1;
         textField.placeholder = [NSString stringWithFormat:@"%d",i + 1];
         textField.borderStyle = UITextBorderStyleRoundedRect;
         textField.frame = CGRectMake(10, 100 + 60 * i, 200, 50);
-        textField.delegate = self;
         [scrollView addSubview:textField];
     }
     
@@ -49,12 +46,6 @@
     [self.view endEditing:YES];
 }
 
-#pragma textField代理
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    self.selTag = textField.tag;
-    return YES;
-}
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
@@ -63,11 +54,9 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - 键盘代理事件(必须实现以下代理)
-- (CGFloat)ljbKeyBoardGetMaxY {
-    UITextField *textField = (UITextField *)[self.view viewWithTag:self.selTag];
-    
-    return CGRectGetMaxY(textField.frame);
+#pragma mark - 键盘代理事件微调偏移量
+- (CGFloat)ljbKeyBoardGetSmallY {
+    return 10;
 }
 
 @end

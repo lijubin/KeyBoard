@@ -9,9 +9,7 @@
 #import "OneViewController.h"
 #import "LJBKeyBoard.h"
 
-@interface OneViewController ()<LJBKeyBoardDelegate,UITextFieldDelegate>
-
-@property(assign)NSInteger selTag;
+@interface OneViewController ()
 
 @end
 
@@ -22,34 +20,20 @@
     self.view.backgroundColor = [UIColor grayColor];
     for (int i = 0; i < 10; i++) {
         UITextField *textField = [[UITextField alloc] init];
-        textField.tag = i + 1;
         textField.placeholder = [NSString stringWithFormat:@"%d",i + 1];
         textField.borderStyle = UITextBorderStyleRoundedRect;
         textField.frame = CGRectMake(10, 100 + 60 * i, 200, 50);
-        textField.delegate = self;
         [self.view addSubview:textField];
     }
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(endEdit)];
     
     //键盘代理设置(设置代理全局，必须实现)
-   [LJBKeyBoard keyBoardWithSuperView:self.view scrollView:nil delegate:self];
+    [LJBKeyBoard keyBoardWithSuperView:self.view scrollView:nil delegate:self];
 }
 
 - (void)endEdit {
     [self.view endEditing:YES];
-}
-
-#pragma mark - 键盘代理事件(必须实现以下代理)
-- (CGFloat)ljbKeyBoardGetMaxY {
-    UITextField *textField = (UITextField *)[self.view viewWithTag:self.selTag];
-    return CGRectGetMaxY(textField.frame);
-}
-
-#pragma textField代理
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    self.selTag = textField.tag;
-    return YES;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

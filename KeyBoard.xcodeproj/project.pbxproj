@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24626DDF1D2E479A004D3151 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24626DDE1D2E479A004D3151 /* Main.storyboard */; };
+		24626DE21D2E47CD004D3151 /* FourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24626DE11D2E47CD004D3151 /* FourViewController.m */; };
 		67D8705B1C55E3AF007867CD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D8705A1C55E3AF007867CD /* main.m */; };
 		67D8705E1C55E3AF007867CD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D8705D1C55E3AF007867CD /* AppDelegate.m */; };
 		67D870611C55E3AF007867CD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D870601C55E3AF007867CD /* ViewController.m */; };
-		67D870641C55E3AF007867CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67D870621C55E3AF007867CD /* Main.storyboard */; };
 		67D870661C55E3AF007867CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67D870651C55E3AF007867CD /* Assets.xcassets */; };
 		67D870691C55E3AF007867CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67D870671C55E3AF007867CD /* LaunchScreen.storyboard */; };
 		67D870741C55E3AF007867CD /* KeyBoardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D870731C55E3AF007867CD /* KeyBoardTests.m */; };
@@ -40,13 +41,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24626DDE1D2E479A004D3151 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		24626DE01D2E47CD004D3151 /* FourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourViewController.h; sourceTree = "<group>"; };
+		24626DE11D2E47CD004D3151 /* FourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourViewController.m; sourceTree = "<group>"; };
 		67D870561C55E3AF007867CD /* KeyBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KeyBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67D8705A1C55E3AF007867CD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		67D8705C1C55E3AF007867CD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		67D8705D1C55E3AF007867CD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		67D8705F1C55E3AF007867CD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		67D870601C55E3AF007867CD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		67D870631C55E3AF007867CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		67D870651C55E3AF007867CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		67D870681C55E3AF007867CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		67D8706A1C55E3AF007867CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,7 +124,7 @@
 				67D8705D1C55E3AF007867CD /* AppDelegate.m */,
 				67D8705F1C55E3AF007867CD /* ViewController.h */,
 				67D870601C55E3AF007867CD /* ViewController.m */,
-				67D870621C55E3AF007867CD /* Main.storyboard */,
+				24626DDE1D2E479A004D3151 /* Main.storyboard */,
 				67D870651C55E3AF007867CD /* Assets.xcassets */,
 				67D870671C55E3AF007867CD /* LaunchScreen.storyboard */,
 				67D8706A1C55E3AF007867CD /* Info.plist */,
@@ -134,6 +137,8 @@
 				67D870971C55E63B007867CD /* ThreeViewController.m */,
 				67D870991C55E829007867CD /* ThreeTableViewCell.h */,
 				67D8709A1C55E829007867CD /* ThreeTableViewCell.m */,
+				24626DE01D2E47CD004D3151 /* FourViewController.h */,
+				24626DE11D2E47CD004D3151 /* FourViewController.m */,
 			);
 			path = KeyBoard;
 			sourceTree = "<group>";
@@ -276,9 +281,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24626DDF1D2E479A004D3151 /* Main.storyboard in Resources */,
 				67D870691C55E3AF007867CD /* LaunchScreen.storyboard in Resources */,
 				67D870661C55E3AF007867CD /* Assets.xcassets in Resources */,
-				67D870641C55E3AF007867CD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +311,7 @@
 				67D870611C55E3AF007867CD /* ViewController.m in Sources */,
 				67D870981C55E63B007867CD /* ThreeViewController.m in Sources */,
 				67D8709B1C55E829007867CD /* ThreeTableViewCell.m in Sources */,
+				24626DE21D2E47CD004D3151 /* FourViewController.m in Sources */,
 				67D870921C55E629007867CD /* OneViewController.m in Sources */,
 				67D8708F1C55E48C007867CD /* LJBKeyBoard.m in Sources */,
 				67D870951C55E632007867CD /* TwoViewController.m in Sources */,
@@ -346,14 +352,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		67D870621C55E3AF007867CD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				67D870631C55E3AF007867CD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		67D870671C55E3AF007867CD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -536,6 +534,7 @@
 				67D870851C55E3AF007867CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		67D870861C55E3AF007867CD /* Build configuration list for PBXNativeTarget "KeyBoardTests" */ = {
 			isa = XCConfigurationList;
@@ -544,6 +543,7 @@
 				67D870881C55E3AF007867CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		67D870891C55E3AF007867CD /* Build configuration list for PBXNativeTarget "KeyBoardUITests" */ = {
 			isa = XCConfigurationList;
@@ -552,6 +552,7 @@
 				67D8708B1C55E3AF007867CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
